@@ -13,20 +13,7 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
-//                .csrf(csrf -> csrf.disable()) // Tắt CSRF để tránh lỗi truy cập tài nguyên tĩnh
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/uploads/**").permitAll()  // ✅ Cho phép truy cập thư mục ảnh
-//                        .requestMatchers("/api/v1/user").permitAll() // ✅ Mở API user
-//                        .anyRequest().permitAll() // 🔒 Các API khác yêu cầu đăng nhập
-//                )
-//                .formLogin(login -> login.disable()) // ❌ Tắt form login mặc định
-//                .httpBasic(httpBasic -> httpBasic.disable()); // ❌ Tắt xác thực HTTP Basic
-//
-//        return http.build();
-//    }
+
 }
 
 

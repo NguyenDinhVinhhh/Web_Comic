@@ -3,7 +3,7 @@ package com.example.web_truyen.controller;
 import com.example.web_truyen.dto.JwtResponse;
 import com.example.web_truyen.entity.User;
 import com.example.web_truyen.form.login.LoginForm;
-import com.example.web_truyen.service.IUserService;
+import com.example.web_truyen.service.user.IUserService;
 import com.example.web_truyen.util.JwtUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

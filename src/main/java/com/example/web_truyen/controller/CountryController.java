@@ -3,15 +3,13 @@ package com.example.web_truyen.controller;
 import com.example.web_truyen.dto.CountryDTO;
 import com.example.web_truyen.entity.Country;
 import com.example.web_truyen.form.country.CountryFilterForm;
-import com.example.web_truyen.service.ICountryService;
+import com.example.web_truyen.service.country.ICountryService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,4 +26,17 @@ public class CountryController {
         List<Country> countries = countryService.getAllCountry(form);
         return modelMapper.map(countries,new TypeToken<List<CountryDTO>>(){}.getType());
     }
+
+    @DeleteMapping("/{id}")
+    public void DeleteCountryById(@PathVariable int id)
+    {
+        countryService.DeleteCountryById(id);
+    }
+
+    @PostMapping("create")
+    public Country createCountry(@RequestBody @Valid CountryDTO countryDTO) {
+        return countryService.createCountry(countryDTO);
+    }
+
+
 }

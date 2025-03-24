@@ -4,7 +4,7 @@ import com.example.web_truyen.dto.UserDTO;
 import com.example.web_truyen.entity.User;
 import com.example.web_truyen.form.user.CreateUserForm;
 import com.example.web_truyen.form.user.UserFilterForm;
-import com.example.web_truyen.service.IUserService;
+import com.example.web_truyen.service.user.IUserService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;

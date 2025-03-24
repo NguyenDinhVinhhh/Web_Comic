@@ -1,6 +1,6 @@
 package com.example.web_truyen.config;
 
-import com.example.web_truyen.service.IUserService;
+import com.example.web_truyen.service.user.IUserService;
 import com.example.web_truyen.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -2,7 +2,8 @@ package com.example.web_truyen.controller;
 
 import com.example.web_truyen.dto.CategoryDTO;
 import com.example.web_truyen.entity.Category;
-import com.example.web_truyen.service.ICategoryService;
+import com.example.web_truyen.form.category.CategoryFilterForm;
+import com.example.web_truyen.service.category.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class CategoryController {
     private ModelMapper modelMapper;
 
     @GetMapping
-    public List<CategoryDTO> getAllCategory()
+    public List<CategoryDTO> getAllCategory(CategoryFilterForm form)
     {
-        List<Category> categories = categoryService.getAllCategory();
+        List<Category> categories = categoryService.getAllCategory(form);
         return modelMapper.map(categories,new TypeToken<List<CategoryDTO>>(){}.getType());
     }
+
+
 }

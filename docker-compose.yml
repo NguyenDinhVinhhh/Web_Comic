@@ -1,28 +1,38 @@
-version: '3.8'
 services:
-  app:
-    build: .
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
+  mysql:
+    container_name: mysql
+    build:
+      context: ./mysql
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/web_doc_truyen
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-    volumes:
-      - uploads:/uploads
-
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: web_doc_truyen
+      MYSQL_USER: vinh
+      MYSQL_PASSWORD: vinh123
+      MYSQL_ROOT_PASSWORD: vinh123
     ports:
       - "3306:3306"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql/mysql-data:/var/lib/mysql
+    networks:
+      - spring-web_truyen
 
-volumes:
-  mysql-data:
-  uploads:
+  web_truyen:
+    container_name: web_truyen
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - spring-web_truyen
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/web_doc_truyen?createDatabaseIfNotExist=true&characterEncoding=UTF-8&serverTimeZone=UTC
+      SPRING_DATASOURCE_USERNAME: vinh
+      SPRING_DATASOURCE_PASSWORD: vinh123
+      SPRING_APPLICATION_NAME: web_truyen
+
+networks:
+  spring-web_truyen:
+    driver: bridge
