@@ -1,17 +1,17 @@
 package com.example.web_truyen.controller;
 
 import com.example.web_truyen.dto.CategoryDTO;
+import com.example.web_truyen.dto.CountryDTO;
 import com.example.web_truyen.entity.Category;
+import com.example.web_truyen.entity.Country;
 import com.example.web_truyen.form.category.CategoryFilterForm;
 import com.example.web_truyen.service.category.ICategoryService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,5 +30,9 @@ public class CategoryController {
         return modelMapper.map(categories,new TypeToken<List<CategoryDTO>>(){}.getType());
     }
 
+    @PostMapping("create")
+    public Category createCategory(@RequestBody @Valid CategoryDTO categoryDTO) {
+        return categoryService.createCategory(categoryDTO);
+    }
 
 }
