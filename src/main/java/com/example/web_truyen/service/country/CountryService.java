@@ -11,6 +11,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CountryService implements ICountryService{
     @Autowired
@@ -37,12 +39,34 @@ public class CountryService implements ICountryService{
 
     @Override
     public void DeleteCountryById(int id) {
+        if (!countryRepository.existsById(id))
+        {
+            throw new RuntimeException("vui long nhap id khac");
+        }
         countryRepository.deleteById(id);
     }
 
     @Override
-    public void UpdateCountry(int id, Country country) {
+    public void UpdateCountry(int id, CountryDTO countryDTO) {
+        // Kiểm tra ID có tồn tại không
+        if (!countryRepository.existsById(id)) {
+            throw new RuntimeException("Country with ID " + id + " not found");
+        }
 
+        // Kiểm tra tên có bị trùng với quốc gia khác không
+        Optional<Country> existingCountry = countryRepository.findByName(countryDTO.getName());
+        if (existingCountry.isPresent() && existingCountry.get().getId() != id) {
+            throw new RuntimeException("Country name '" + countryDTO.getName() + "' already exists");
+        }
+
+        // Chuyển đổi DTO -> Entity
+        Country country = modelMapper.map(countryDTO, Country.class);
+        country.setId(id);
+
+        // Cập nhật quốc gia
+        countryRepository.save(country);
     }
+
+
 
 }

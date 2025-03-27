@@ -35,4 +35,17 @@ public class CategoryController {
         return categoryService.createCategory(categoryDTO);
     }
 
+    @DeleteMapping("/{id}")
+    public void DeleteCategoryById(@PathVariable int id)
+    {
+        categoryService.DeleteCategoryById(id);
+    }
+
+
+    @PutMapping("/{id}")
+    public void updateCategory(@PathVariable("id")  int id , @RequestBody  CategoryDTO categoryDTO)
+    {
+        categoryService.UpdateCategory(id,categoryDTO);
+    }
+
 }

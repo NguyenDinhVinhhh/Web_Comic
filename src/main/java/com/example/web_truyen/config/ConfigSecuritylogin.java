@@ -37,7 +37,7 @@ public class ConfigSecuritylogin extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login","/api/v1/user").permitAll()
+                .antMatchers("/login","/api/v1/user","/api/v1/comics").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

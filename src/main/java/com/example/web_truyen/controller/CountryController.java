@@ -38,5 +38,10 @@ public class CountryController {
         return countryService.createCountry(countryDTO);
     }
 
+    @PutMapping("/{id}")
+    public void updateDepartment(@PathVariable("id")  int id , @RequestBody  CountryDTO countryDTO)
+    {
+        countryService.UpdateCountry(id,countryDTO);
+    }
 
 }
