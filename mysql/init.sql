@@ -44,7 +44,7 @@ CREATE TABLE comics (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     author VARCHAR(255),
-    status ENUM('Ongoing', 'Completed') NOT NULL,
+    status ENUM('ONGOING', 'COMPLETED') NOT NULL,
     cover_image VARCHAR(255),
     country_id INT,
     views INT DEFAULT 0,
@@ -171,9 +171,9 @@ INSERT INTO countries (name) VALUES
 ('Trung Quốc');
 
 INSERT INTO comics (title, description, author, status, cover_image, country_id, views, likes) VALUES
-('One Piece', 'Hành trình tìm kiếm kho báu của Luffy', 'Eiichiro Oda', 'Ongoing', 'onepiece.jpg', 1, 50000, 1000),
-('Naruto', 'Hành trình trở thành Hokage của Naruto', 'Masashi Kishimoto', 'Completed', 'naruto.jpg', 1, 70000, 2000),
-('Solo Leveling', 'Thợ săn mạnh nhất thế giới', 'Chugong', 'Completed', 'sololeveling.jpg', 2, 90000, 3000);
+('One Piece', 'Hành trình tìm kiếm kho báu của Luffy', 'Eiichiro Oda', 'ONGOING', 'onepiece.jpg', 1, 50000, 1000),
+('Naruto', 'Hành trình trở thành Hokage của Naruto', 'Masashi Kishimoto', 'COMPLETED', 'naruto.jpg', 1, 70000, 2000),
+('Solo Leveling', 'Thợ săn mạnh nhất thế giới', 'Chugong', 'COMPLETED', 'sololeveling.jpg', 2, 90000, 3000);
 
 INSERT INTO comic_categories (comic_id, category_id) VALUES
 (1, 1), (2, 1), (3, 3);
